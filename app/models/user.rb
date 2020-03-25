@@ -4,7 +4,10 @@ class User < ApplicationRecord
 
     attr_reader :password
 
-    generate a cookie
+    #makes sure we have a token
+    after_initialize :ensure_session_token
+    
+    #generate a cookie
     def self.generate_session_token
         SecureRandom::urlsafe_base64(16)
     end
